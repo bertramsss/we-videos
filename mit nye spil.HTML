@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <canvas id="gc" width="400" height="400"></canvas>
+   
+    <script>
+   
+        /***************************************************************
+         *
+         * Dette er en browser funktion som hjælper med at starte vores
+         * spil
+         *
+         ***************************************************************/
+        window.onload=function() {
+           
+            // initialiser vores spil
+            init();
+        };
+ 
+ 
+ 
+        /***************************************************************
+         *
+         * Dette er vores init function, den kører inden spillet starter.
+         *
+         ***************************************************************/
+        function init () {
+            // byg vores canvas (lærrede) som vi kan tegne på
+            canv=document.getElementById("gc");
+            ctx=canv.getContext("2d");
+ 
+            spillerX = 10;
+            spillerY = 10;
+            retning = "right";
+ 
+            // lyt efter keyboard
+            document.addEventListener("keydown",keyPush);
+ 
+            // start game loop
+            setInterval(game,1000/15);
+        };
+ 
+ 
+ 
+        /***************************************************************
+         *
+         * Her er vores game loop som kører ca. 60 gange i sekundet
+         *
+         ***************************************************************/
+        function game() {
+            // opdater vores spil, position, farve etc..
+            update();
+            // tegn så spilleren kan se de nye opdateringer
+            draw();
+        };
+ 
+ 
+ 
+        /***************************************************************
+         *
+         * Vores update funktion klarer alt logik
+         *
+         ***************************************************************/
+        function update() {
+         if (retning == "right") {
+                spillerX +=10;
+
+        }
+        else if (retning == "left") {
+                spillerX -=10;
+
+        }   
+        else if (retning == "down") {
+                spillerY +=10;
+
+          }       
+        else if (retning == "up") {
+                spillerY -=10;
+
+        else 
+
+                
+        };
+ 
+ 
+ 
+        /***************************************************************
+         *
+         * Vores tegne funktion tegner alt med de nye ændringer fra vores
+         * update funktion
+         *
+         ***************************************************************/
+        function draw() {
+            ctx.fillStyle="black";
+            ctx.fillRect(0,0,canv.width,canv.height);
+            ctx.fillStyle="blue";
+            ctx.fillRect(spillerX,spillerY,20,20);
+        };
+ 
+ 
+ 
+        /***************************************************************
+         *
+         * Denne funktion hjælper os med at fange når nogen trykker på
+         * keyboardet
+         *
+         ***************************************************************/
+        function keyPush(evt) {
+            switch(evt.keyCode) {
+                case 37:
+                    // venstre.
+                    retning = "left";
+                    break;
+                case 38:
+                    // op.
+                    retning = "up";
+                    break;
+                case 39:
+                    // højre.
+                    retning = "right";
+                    break;
+                case 40:
+                    // ned.
+                    retning = "down";
+                    break;
+            }
+        }
+ 
+    </script>
+   
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
